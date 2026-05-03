@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Front vs Back</title>
+</head>
+<body>
+  <!-- Título da página -->
+  <h1>Comunicação Front-end e Back-end</h1>
+  <!-- Campo onde o usuário digita o nome -->
+  <input type="text" id="nome" placeholder="Digite seu nome">
+  <!-- Botão que chama a função enviar() -->
+  <button onclick="enviar()">Enviar</button>
+
+  <!-- Área onde será exibida a resposta -->
+  <h3 id="resposta"></h3>
+
+  <!-- Função executada ao enviar clicar no botão -->
+  <script>
+    function enviar() {
+    // Captura o valor digitado no input
+      const nome = document.getElementById("nome").value;
+    // Envia uma requisição para o back-end
+      fetch("http://localhost:3000/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+    // Converte o dado para JSON e envia
+        body: JSON.stringify({ nome: nome })
+      })
+    // Converte a resposta para objeto JavaScript
+      .then(res => res.json())
+    // Recebe os dados e exibe na tela  
+      .then(data => {
+        document.getElementById("resposta").innerText = data.mensagem;
+      })
+    // Caso ocorra erro  
+      .catch(() => {
+        document.getElementById("resposta").innerText = "Erro ao conectar com o servidor";
+      });
+    }
+  </script>
+
+</body>
+</html>
