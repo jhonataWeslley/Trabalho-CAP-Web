@@ -12,6 +12,6 @@ Tecnologias utilizadas:
 
 Como executar o projeto:
 1. Clonar ou baixar o projeto
-2. 2. Instalar as dependências (na pasta backend)
+2. Instalar as dependências (na pasta backend)
 bash
 npm install
